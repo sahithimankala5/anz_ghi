@@ -7,10 +7,12 @@ on:
         type: boolean
         description: Whether unit tests will pass or not
         default: true
-      my-name:
-        type: string
-        description: enter your name
-        default: sahithi mankala
+      Push-Artifact-to:
+        type: choice
+        description: where to push the artifact
+        options:
+          - Jfrog
+          - Github
 
 jobs:
   lint-build:
@@ -26,6 +28,28 @@ jobs:
       - name: Failing tests
         if: ${{ !inputs.pass-unit-tests }}
         run: exit 1
+  Build:
+    runs-on: ubuntu-latest
+    needs:
+      - lint and build
+      -unit-tests
+    steps:
+      - name: Build Project
+        run: echo "Building the project"
+  Push-to-Artifact:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - name: push to Jfrog
+        if ${{inputs.Push-Artifact-to=='Jfrog'}}
+        run: echo "Pushing to ${{inputs.Push-Artifact-to}}"
+      - name: Push to Github
+        if ${{inputs.Push-Artifact-to=="Github"}}
+        run: echo "Pushing to ${{inputs.Push-Artifact-to}}"
+
+
+
   deploy-nonprod:
     runs-on: ubuntu-latest
     needs:
