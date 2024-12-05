@@ -1,4 +1,4 @@
-name: workflow events
+name: 3-workflow events
 # on: [push,workflow_dispatch]
 on:
   schedule:
