@@ -1,4 +1,4 @@
-name: Using Variables
+name: 8-Using Variables
 on:
   workflow_dispatch:
 env:
