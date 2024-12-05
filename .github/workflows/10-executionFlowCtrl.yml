@@ -42,10 +42,10 @@ jobs:
       - build
     steps:
       - name: push to Jfrog
-        if ${{inputs.Push-Artifact-to=='Jfrog'}}
+        if ${{inputs.Push-Artifact-to == 'Jfrog'}}
         run: echo "Pushing to ${{inputs.Push-Artifact-to}}"
       - name: Push to Github
-        if ${{inputs.Push-Artifact-to=="Github"}}
+        if ${{inputs.Push-Artifact-to == "Github"}}
         run: echo "Pushing to ${{inputs.Push-Artifact-to}}"
 
 
