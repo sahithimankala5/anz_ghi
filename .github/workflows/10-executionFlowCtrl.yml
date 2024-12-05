@@ -31,7 +31,7 @@ jobs:
   Build:
     runs-on: ubuntu-latest
     needs:
-      - lint and build
+      - lint-build
       - unit-tests
     steps:
       - name: Build Project
